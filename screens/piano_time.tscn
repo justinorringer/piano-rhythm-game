@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxjef3uhon8xr"]
+[gd_scene load_steps=6 format=3 uid="uid://bxjef3uhon8xr"]
 
 [ext_resource type="Script" uid="uid://eisbolb7xiov" path="res://screens/piano_time.gd" id="1_bsim4"]
+[ext_resource type="PackedScene" uid="uid://biotrs1ykuhgv" path="res://Entities/Piano/Piano.tscn" id="2_2i6oj"]
 [ext_resource type="PackedScene" uid="uid://b8o3flnwe3fva" path="res://csound/csound_player.tscn" id="2_4d21u"]
 [ext_resource type="PackedScene" uid="uid://bvumvr2mlaqwj" path="res://generator/generator.tscn" id="3_4d21u"]
+[ext_resource type="PackedScene" uid="uid://ct68kqbn6cyss" path="res://csound/midi_csound_player.tscn" id="3_x35m1"]
 
 [node name="PianoTime" type="Node2D"]
 script = ExtResource("1_bsim4")
 
 [node name="CsoundPlayer" parent="." instance=ExtResource("2_4d21u")]
 
+[node name="MidiCsoundPlayer" parent="." instance=ExtResource("3_x35m1")]
+
 [node name="Generator" parent="." instance=ExtResource("3_4d21u")]
 
-[editable path="CsoundPlayer"]
+[node name="Piano" parent="." instance=ExtResource("2_2i6oj")]
