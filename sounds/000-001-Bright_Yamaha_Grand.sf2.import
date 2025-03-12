@@ -1,0 +1,14 @@
+[remap]
+
+importer="soundfont"
+type="SoundFontFileReader"
+uid="uid://ccp5y6txw677n"
+path="res://.godot/imported/000-001-Bright_Yamaha_Grand.sf2-6d8ea980242c186fd37da0501907a17c.sf2str"
+
+[deps]
+
+source_file="res://sounds/000-001-Bright_Yamaha_Grand.sf2"
+dest_files=["res://.godot/imported/000-001-Bright_Yamaha_Grand.sf2-6d8ea980242c186fd37da0501907a17c.sf2str"]
+
+[params]
+

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct68kqbn6cyss"]
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_hpkff"]
+csound_name = "Keyboard"
+
+[sub_resource type="AudioStreamCsoundChannel" id="AudioStreamCsoundChannel_kfyye"]
+csound_name = "Keyboard"
+
+[sub_resource type="AudioStreamCsoundNamedChannel" id="AudioStreamCsoundNamedChannel_4tb6j"]
+channel_left = "instr_1_left"
+channel_right = "instr_1_right"
+csound_name = "Keyboard"
+
+[sub_resource type="AudioStreamMyTone" id="AudioStreamMyTone_31rl7"]
+
+[node name="MidiCsoundPlayer" type="Node2D"]
+
+[node name="CsoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamCsound_hpkff")
+autoplay = true
+
+[node name="CsoundChannelPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamCsoundChannel_kfyye")
+volume_db = -80.0
+autoplay = true
+
+[node name="CsoundNamedChannelPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamCsoundNamedChannel_4tb6j")
+volume_db = -80.0
+autoplay = true
+
+[node name="MyTonePlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMyTone_31rl7")
+volume_db = -80.0
+autoplay = true

@@ -2,3 +2,9 @@
 
 [resource]
 csound/0/volume_db = -21.0919
+csound/1/name = "Keyboard"
+csound/1/solo = false
+csound/1/mute = false
+csound/1/bypass = false
+csound/1/volume_db = -21.0919
+csound/1/tab = 0
