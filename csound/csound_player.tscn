@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8o3flnwe3fva"]
-
-[ext_resource type="Script" uid="uid://cdqnneoa60tri" path="res://example/main.gd" id="1_ob6y6"]
+[gd_scene load_steps=6 format=3 uid="uid://b8o3flnwe3fva"]
 
 [sub_resource type="AudioStreamCsound" id="AudioStreamCsound_a6stl"]
 
@@ -16,29 +14,7 @@ channel_right = "instr_4_right"
 
 [sub_resource type="AudioStreamMyTone" id="AudioStreamMyTone_31rl7"]
 
-[node name="main" type="Node2D"]
-script = ExtResource("1_ob6y6")
-
-[node name="CheckButton" type="CheckButton" parent="."]
-offset_left = 229.0
-offset_top = 112.0
-offset_right = 305.0
-offset_bottom = 152.0
-
-[node name="Label" type="Label" parent="."]
-offset_left = 194.0
-offset_top = 126.0
-offset_right = 234.0
-offset_bottom = 140.0
-text = "Generate"
-
-[node name="Button" type="Button" parent="."]
-visible = false
-offset_left = 600.0
-offset_top = 159.0
-offset_right = 737.0
-offset_bottom = 209.0
-text = "PLAY MIDI"
+[node name="CsoundPlayer" type="Node2D"]
 
 [node name="CsoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamCsound_a6stl")
@@ -62,6 +38,3 @@ autoplay = true
 stream = SubResource("AudioStreamMyTone_31rl7")
 volume_db = -80.0
 autoplay = true
-
-[connection signal="toggled" from="CheckButton" to="." method="_generate"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

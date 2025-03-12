@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PianoRhythmGame"
-run/main_scene="uid://b8o3flnwe3fva"
+run/main_scene="uid://bxbmvl6sqlmx3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
