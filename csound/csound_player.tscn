@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8o3flnwe3fva"]
+
+[sub_resource type="AudioStreamCsound" id="AudioStreamCsound_a6stl"]
+
+[sub_resource type="AudioStreamCsoundChannel" id="AudioStreamCsoundChannel_kfyye"]
+
+[sub_resource type="AudioStreamCsoundNamedChannel" id="AudioStreamCsoundNamedChannel_4tb6j"]
+channel_left = "instr_1_left"
+channel_right = "instr_1_right"
+
+[sub_resource type="AudioStreamCsoundNamedChannel" id="AudioStreamCsoundNamedChannel_ove8l"]
+channel_left = "instr_4_left"
+channel_right = "instr_4_right"
+
+[sub_resource type="AudioStreamMyTone" id="AudioStreamMyTone_31rl7"]
+
+[node name="CsoundPlayer" type="Node2D"]
+
+[node name="CsoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamCsound_a6stl")
+autoplay = true
+
+[node name="CsoundChannelPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamCsoundChannel_kfyye")
+volume_db = -80.0
+autoplay = true
+
+[node name="CsoundNamedChannelPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamCsoundNamedChannel_4tb6j")
+volume_db = -80.0
+autoplay = true
+
+[node name="CsoundNamedChannelPlayer2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamCsoundNamedChannel_ove8l")
+autoplay = true
+
+[node name="MyTonePlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMyTone_31rl7")
+volume_db = -80.0
+autoplay = true

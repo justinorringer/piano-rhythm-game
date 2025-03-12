@@ -1,0 +1,14 @@
+[remap]
+
+importer="csound"
+type="CsoundFileReader"
+uid="uid://bh1jmem4ieak8"
+path="res://.godot/imported/piano.csd-e1e74917e6549f66f1630b06799a9497.csoundstr"
+
+[deps]
+
+source_file="res://piano.csd"
+dest_files=["res://.godot/imported/piano.csd-e1e74917e6549f66f1630b06799a9497.csoundstr"]
+
+[params]
+

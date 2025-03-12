@@ -1,3 +1,21 @@
+# addon ignores
+addons/csound
+addons/csound/*
+addons/csound/bin/linux
+addons/csound/bin/macos
+addons/csound/bin/wasm
+addons/csound/bin/web
+addons/csound/bin/windows
+addons/csound/bin/x11
+addons/csound/bin/ios
+addons/csound/bin/ios_sim
+addons/csound/bin/ioscross
+addons/csound/bin/android
+addons/csound/bin/android-arm
+addons/csound/bin/android-arm64
+addons/csound/bin/android-x64
+addons/csound/bin/android-x86
+
 # Godot 4+ specific ignores
 .import/
 export.cfg
