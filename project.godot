@@ -11,5 +11,19 @@ config_version=5
 [application]
 
 config/name="PianoRhythmGame"
+run/main_scene="uid://b8o3flnwe3fva"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+csound/hide_csound_logs=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/csound/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
