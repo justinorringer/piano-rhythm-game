@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://8rk2lmm2nkr1"]
+
+[ext_resource type="Script" uid="uid://dcpwj4w6d1k32" path="res://screens/score.gd" id="1_by8ck"]
+
+[node name="Score" type="Node2D"]
+script = ExtResource("1_by8ck")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Go to beginning"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

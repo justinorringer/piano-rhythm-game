@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 csound/hide_csound_logs=false
 
+[autoload]
+
+SceneSwitch="*res://globals/SceneSwitch.gd"
+CsoundState="*res://globals/CsoundState.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/csound/plugin.cfg")
