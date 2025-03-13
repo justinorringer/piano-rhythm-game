@@ -5,23 +5,18 @@ var csound: CsoundGodot
 @onready var csd = 'res://piano.csd'
 
 func _ready():
-	CsoundServer.connect("csound_layout_changed", csound_layout_changed)
+	if CsoundState._main_ready:
+		_generate()
+	else:
+		CsoundState.csound_ready_main_signal.connect(csound_ready)
 
 
-func csound_layout_changed():
-	csound = CsoundServer.get_csound("Main")
-	csound.send_control_channel("cutoff", 1)
-
-	csound.csound_ready.connect(csound_ready)
-
-
-func csound_ready(csound_name):
-	if csound_name != "Main":
-		return
+func csound_ready():
 	_generate()
 
 
 func _generate() -> void:
+	csound = CsoundServer.get_csound("Main")
 	csound.compile_csd(FileAccess.get_file_as_string(csd))
 	var notes = [261, 277, 293, 311, 329, 349, 369, 392, 415, 440]
 	for i in range(10):

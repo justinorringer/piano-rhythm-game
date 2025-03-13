@@ -10,21 +10,10 @@ var _csound_ready = false
 var csound: CsoundGodot
 
 func _ready():
-	CsoundServer.connect("csound_layout_changed", csound_layout_changed)
+	CsoundState.csound_ready_keyboard_signal.connect(csound_ready)
 
-
-func csound_layout_changed():
+func csound_ready():
 	csound = CsoundServer.get_csound("Keyboard")
-	csound.send_control_channel("cutoff", 1)
-
-	csound.csound_ready.connect(csound_ready)
-
-
-func csound_ready(csound_name):
-	if csound_name != "Keyboard":
-		return
-	_csound_ready = true
-	csound.compile_csd(FileAccess.get_file_as_string(midi_csd))
 
 enum KeyState { OFF, ON }
 var state = KeyState.OFF
@@ -44,8 +33,9 @@ func set_state(new_state: KeyState):
 			KeyState.ON:
 				anim_player.play("on")
 
+
 func _input(event):
-	if not _csound_ready:
+	if not CsoundState._keyboard_ready:
 		return
 		
 	if event is InputEventKey and key_index in key_map:

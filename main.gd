@@ -1,23 +1,28 @@
 extends Node2D
 
-# TODO change obv
-var titleScreenPath = load("res://screens/piano_time.tscn")
-var current_scene = null
-var mainScene = null
+@export var _main_ready = false
+@export var _keyboard_ready = false
+var csound: CsoundGodot
+var midi_csd = "res://midi.csd"
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	mainScene = get_node(".")
-	var titleScreen = titleScreenPath.instantiate()
-	mainScene.add_child(titleScreen)
-	current_scene = mainScene.get_child(mainScene.get_child_count() - 1)
+	CsoundServer.connect("csound_layout_changed", csound_layout_changed)
+
+
+func csound_layout_changed():
+	csound = CsoundServer.get_csound("Keyboard")
+	csound.send_control_channel("cutoff", 1)
+	csound.csound_ready.connect(csound_ready)
 	
-func switch_scene(res_path):
-	call_deferred("_deferred_switch_scene", res_path)
-	
-func _deferred_switch_scene(res_path):
-	current_scene.free()
-	var s = load(res_path)
-	current_scene = s.instantiate()
-	mainScene.add_child(current_scene)
-	mainScene.current_scene = current_scene
+	csound = CsoundServer.get_csound("Main")
+	csound.send_control_channel("cutoff", 1)
+	csound.csound_ready.connect(csound_ready)
+
+
+func csound_ready(csound_name):
+	if csound_name == "Keyboard":
+		_keyboard_ready = true
+	if csound_name == "Main":
+		_main_ready = true
+		csound.compile_csd(FileAccess.get_file_as_string(midi_csd))
