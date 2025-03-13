@@ -1,12 +1,12 @@
-extends Node3D
+class_name PianoKey extends Node3D
 
 @export var key_index: int = 0
 @export var blackKey: bool = false
 @onready var anim_player = $AnimationPlayer
 @onready var mesh = $MeshInstance3D
-@onready var midi_csd = "res://midi.csd"
 
-var _csound_ready = false
+signal key_pressed(note)
+signal key_released(note)
 var csound: CsoundGodot = CsoundServer.get_csound("Keyboard")
 
 func _ready():
@@ -44,9 +44,9 @@ func _input(event):
 				if state == KeyState.ON:
 					return
 				csound.note_on(0, 67 + key_index, 90)
-				#csound.note_on(key_index, key_index + 100, 90)
 				set_state(KeyState.ON)
+				key_pressed.emit(key_index)
 			else:
 				csound.note_off(0, 67 + key_index)
-				#csound.note_off(key_index, key_index + 100)
 				set_state(KeyState.OFF)
+				key_released.emit(key_index)
