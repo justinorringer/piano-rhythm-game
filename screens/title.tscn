@@ -11,12 +11,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-text = "Title"
-
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
 offset_right = 8.0

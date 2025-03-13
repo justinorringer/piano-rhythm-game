@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1dlk84s8r86j"]
+
+[ext_resource type="Script" uid="uid://d1agrnifgtn8q" path="res://screens/game.gd" id="1_3ciuf"]
+[ext_resource type="PackedScene" uid="uid://bvumvr2mlaqwj" path="res://generator/generator.tscn" id="2_6nlyh"]
+[ext_resource type="PackedScene" uid="uid://b8o3flnwe3fva" path="res://csound/csound_player.tscn" id="2_rypym"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_3ciuf")
+
+[node name="CsoundPlayer" parent="." instance=ExtResource("2_rypym")]
+
+[node name="Generator" parent="." instance=ExtResource("2_6nlyh")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Die or something"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

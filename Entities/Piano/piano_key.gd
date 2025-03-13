@@ -7,7 +7,7 @@ extends Node3D
 @onready var midi_csd = "res://midi.csd"
 
 var _csound_ready = false
-var csound: CsoundGodot
+var csound: CsoundGodot = CsoundServer.get_csound("Keyboard")
 
 func _ready():
 	CsoundState.csound_ready_keyboard_signal.connect(csound_ready)
