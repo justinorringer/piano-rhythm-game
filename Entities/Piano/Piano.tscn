@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://biotrs1ykuhgv"]
+[gd_scene load_steps=4 format=3 uid="uid://biotrs1ykuhgv"]
 
+[ext_resource type="Script" uid="uid://bj0jughvcfp0m" path="res://Entities/Piano/piano.gd" id="1_4cfhx"]
 [ext_resource type="PackedScene" uid="uid://wn23bm18m24k" path="res://Entities/Piano/PianoKey.tscn" id="1_4r2tf"]
 
 [sub_resource type="Environment" id="Environment_4r2tf"]
@@ -9,6 +10,7 @@ ambient_light_color = Color(0.662651, 0.476852, 0.682136, 1)
 ambient_light_energy = 2.6
 
 [node name="Piano" type="Node3D"]
+script = ExtResource("1_4cfhx")
 
 [node name="PianoKeyC" parent="." instance=ExtResource("1_4r2tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07109, 0, 0)

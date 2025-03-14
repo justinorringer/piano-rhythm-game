@@ -8,7 +8,7 @@ var ui = null
 func _ready():
 	if not has_node("/root/Main"):
 		mainScene = get_tree().root
-		current_scene = mainScene.get_child(mainScene.get_child_count())
+		current_scene = mainScene.get_child(mainScene.get_child_count() - 1)
 	else:
 		mainScene = get_node("/root/Main")
 		current_scene = mainScene.get_child(mainScene.get_child_count() - 1)
