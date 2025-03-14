@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb8o0l0luu3ot"]
+
+[ext_resource type="Script" uid="uid://jvfkriglmr3u" path="res://Entities/staff/note_track.gd" id="1_ndiku"]
+[ext_resource type="PackedScene" uid="uid://p5r34nhccod1" path="res://Entities/staff/Note.tscn" id="2_u2yxl"]
+
+[node name="NoteTrack" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ndiku")
+
+[node name="NoteControl" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Note2" parent="NoteControl" instance=ExtResource("2_u2yxl")]
+layout_mode = 1
+offset_left = 1856.0
+offset_top = 77.0
+offset_right = 1895.6
+offset_bottom = 116.52
+
+[node name="Note5" parent="NoteControl" instance=ExtResource("2_u2yxl")]
+layout_mode = 1
+offset_left = 1447.0
+offset_top = 161.0
+offset_right = 1486.6
+offset_bottom = 200.52
+
+[node name="Note4" parent="NoteControl" instance=ExtResource("2_u2yxl")]
+layout_mode = 1
+offset_left = 999.0
+offset_top = 99.0
+offset_right = 1038.6
+offset_bottom = 138.52
+
+[node name="Note" parent="NoteControl" instance=ExtResource("2_u2yxl")]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 41.0
+offset_top = 33.0
+offset_right = 80.6
+offset_bottom = 72.52
+
+[node name="Note6" parent="NoteControl" instance=ExtResource("2_u2yxl")]
+layout_mode = 1
+offset_left = 545.0
+offset_top = 121.0
+offset_right = 584.6
+offset_bottom = 160.52
+
+[node name="Note3" parent="NoteControl" instance=ExtResource("2_u2yxl")]
+layout_mode = 1
+offset_left = 272.0
+offset_top = 88.0
+offset_right = 311.6
+offset_bottom = 127.52
