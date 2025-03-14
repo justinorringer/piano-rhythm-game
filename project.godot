@@ -13,6 +13,7 @@ config_version=5
 config/name="PianoRhythmGame"
 run/main_scene="uid://bxbmvl6sqlmx3"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="uid://vhkvv2ytbs36"
 config/icon="res://icon.svg"
 
 [audio]
