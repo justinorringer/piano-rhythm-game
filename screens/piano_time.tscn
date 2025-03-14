@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxjef3uhon8xr"]
+[gd_scene load_steps=8 format=3 uid="uid://bxjef3uhon8xr"]
 
 [ext_resource type="Script" uid="uid://omnx88lorl6x" path="res://screens/piano_time.gd" id="1_x35m1"]
 [ext_resource type="PackedScene" uid="uid://biotrs1ykuhgv" path="res://Entities/Piano/Piano.tscn" id="2_2i6oj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvumvr2mlaqwj" path="res://generator/generator.tscn" id="3_4d21u"]
 [ext_resource type="PackedScene" uid="uid://ct68kqbn6cyss" path="res://csound/midi_csound_player.tscn" id="3_x35m1"]
 [ext_resource type="PackedScene" uid="uid://fxdllhicar5y" path="res://Entities/staff/staff.tscn" id="6_t0562"]
+[ext_resource type="PackedScene" uid="uid://bb8o0l0luu3ot" path="res://Entities/staff/NoteTrack.tscn" id="7_gir0m"]
 
 [node name="PianoTime" type="Node2D"]
 process_mode = 3
@@ -34,5 +35,10 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Go to game"
+
+[node name="NoteTrack" parent="Control" instance=ExtResource("7_gir0m")]
+layout_mode = 1
+offset_right = 1113.0
+offset_bottom = 605.0
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

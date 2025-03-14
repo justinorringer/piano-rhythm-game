@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://p5r34nhccod1"]
+
+[ext_resource type="Script" uid="uid://bvg32y3w7pna5" path="res://Entities/staff/note.gd" id="1_kvin3"]
+
+[node name="Note" type="Control"]
+layout_mode = 3
+anchor_right = 0.035
+anchor_bottom = 0.062
+offset_right = -0.32
+offset_bottom = -0.176003
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1111.0
+offset_bottom = -607.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+script = ExtResource("1_kvin3")
