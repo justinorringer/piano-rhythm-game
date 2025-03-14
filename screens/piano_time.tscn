@@ -9,7 +9,6 @@ process_mode = 3
 script = ExtResource("1_x35m1")
 
 [node name="Piano" parent="." instance=ExtResource("2_2i6oj")]
-notes = null
 
 [node name="Staff" parent="." instance=ExtResource("6_t0562")]
 offset_top = 359.0

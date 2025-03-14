@@ -27,7 +27,7 @@ func _process(_delta):
 
 	if note_start_times.is_empty():
 		if not generator_triggered and (curr_time - latest_release) > 1000:
-			Generator.generate(notes)
+			Generator.generate(notes, tempo)
 			generator_triggered = true
 
 
