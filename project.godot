@@ -25,6 +25,7 @@ csound/hide_csound_logs=false
 SceneSwitch="*res://globals/SceneSwitch.gd"
 CsoundState="*res://globals/CsoundState.gd"
 Generator="*res://generator/generator.tscn"
+RNG="*res://globals/RNG.gd"
 
 [editor_plugins]
 
