@@ -1,10 +1,18 @@
 extends Node2D
 const MAX_SONG_LENGTH = 30 # short and sweet?
+const MAX_CHORDS := 5
 
 var csound: CsoundGodot
 
 @onready var csd = 'res://piano.csd'
 
+# Minimum notes format
+#{ui
+#	"name": "D",
+#	"length": "quarter",
+#	"octave": 3,
+#	"start_count": 1,
+#},
 func generate(lick, tempo):
 	var licky = lick
 	# pick chords using generate_chords()
@@ -20,10 +28,12 @@ func generate(lick, tempo):
 
 	# generate phrases similar to the lick provided
 	var phrases = [licky, licky]
-	for i in range(4):  # Generate 4 phrases
+	for i in range(7):  # Generate 4 phrases
 		var phrase = []
-		for j in range(lick.size() - 1):
+		for j in range(lick.size() + 1):
 			var random_note = note_pool[randi() % note_pool.size()]
+			random_note["start_count"] = 0
+			# TODO assign octaves
 			phrase.append(random_note)
 		phrases.append(phrase)
 	
@@ -31,35 +41,40 @@ func generate(lick, tempo):
 
 	# concatenate those phrases together
 	var new_melody = []
-	var to_rest_or_not = [[], [{"name": "R", "length": "quarter"}]]
+	var to_rest_or_not = [[], [], [{"name": "R", "length": "quarter"}]]
 	for phrase in phrases:
 		new_melody += phrase + RNG.pick_random(to_rest_or_not)
 
-	new_melody = limit_notes_to_max_song_length(new_melody, tempo)
+	new_melody = limit_notes_to_max_song_length(new_melody, tempo) + lick
+	var counted_melody = assign_counts(new_melody)
+
+	# TODO apply inversions by choosing octaves for chord notes.
+	var timed_chords = time_chords_with_notes(chords, counted_melody)
+	var chord_notes = get_notes_array_from_chords(timed_chords)
 	
-	var timed_chords = time_chords_with_notes(chords, new_melody)
-	print("timed chords", timed_chords)
+	# combine melody and chords and sort by time
+	return combine_and_sort_notes([counted_melody, chord_notes])
+
 
 var circle_of_fifths = [
+	"C", "G", "D", "A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F",
 	"C", "G", "D", "A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F"
 ]
-
 var notes_by_step = [
 	"C", "C#", "D", "Eb", "E",
 	"F", "F#", "G", "G#", "A", 
 	"Bb", "B", "C", "C#", "D", 
 	"Eb", "E", "F", "F#", "G"
 ]
-
 # Chord types (Major, Minor, etc.)
 var chord_relations = {
 	"major": [0, 4, 7],  # Root, Major third, Perfect fifth
-	"minor": [0, 3, 7],   # Root, Minor third, Perfect fifth
-	"diminished": [0, 3, 6],  # Diminished: Root, Minor third, Diminished fifth
+	#"minor": [0, 3, 7],   # Root, Minor third, Perfect fifth
+	#"diminished": [0, 3, 6],  # Diminished: Root, Minor third, Diminished fifth
 	"augmented": [0, 4, 8]   # Augmented: Root, Major third, Augmented fifth
 }
 
-const MAX_CHORDS := 5
+
 func generate_chord_progression(notes):
 	var first = RNG.pick_random(notes).name
 	var progression := [first]
@@ -92,6 +107,7 @@ func generate_chord_progression(notes):
 
 	return progression
 
+
 func pick_chord_relation(chords: Array):
 	var chords_including_interval = []
 	for c in chords:
@@ -104,6 +120,7 @@ func pick_chord_relation(chords: Array):
 	
 	return chords_including_interval
 
+
 func _find_triad_from_relation(chord: String, relation: String):
 	var triad = []
 	var intervals = chord_relations.get(relation, chord_relations["major"])
@@ -114,6 +131,7 @@ func _find_triad_from_relation(chord: String, relation: String):
 		triad.append(notes_by_step[note_index])
 
 	return triad
+
 
 var note_lengths = {
 	8.0: "tied whole",
@@ -142,7 +160,6 @@ func limit_notes_to_max_song_length(notes, tempo):
 		limited_notes.append(note)
 		total_duration += note_duration
 
-	print("total dur", total_duration)
 	return limited_notes
 
 
@@ -152,7 +169,8 @@ func time_chords_with_notes(chords: Array, notes: Array):
 	# notes like [{"name": "A", "length": "quarter"}]
 	var timed_chords = []
 	var chord_count = chords.size()
-	var length_options = [8.0, 6.0, 4.0, 3.0, 2.0]
+	#var length_options = [8.0, 6.0, 4.0, 3.0, 2.0]
+	var length_options = ["tied whole", "dotted whole", "whole", "dotted half", "half"]
 	var note_loop_index = 0
 	var count = 1
 	var carry = 0
@@ -179,6 +197,7 @@ func time_chords_with_notes(chords: Array, notes: Array):
 
 			if valid_chord:
 				var random_length = RNG.pick_random(length_options)
+				var random_length_count = note_lengths.find_key(random_length)
 				var timed_chord = chord.duplicate()
 				timed_chord["length"] = random_length
 				timed_chord["start_count"] = count
@@ -186,87 +205,53 @@ func time_chords_with_notes(chords: Array, notes: Array):
 				# move count and note_loop_index up
 				var tmp_count = carry # for current chord from one phrase to another
 				carry = 0
-				while tmp_count < random_length and note_loop_index < notes.size():
+				while tmp_count < random_length_count and note_loop_index < notes.size():
 					var passed_note_length = note_lengths.find_key(notes[note_loop_index]["length"])
 					count += passed_note_length
 					tmp_count += passed_note_length
 					note_loop_index += 1
-				if tmp_count > random_length:
+				if tmp_count > random_length_count:
 					note_loop_index -= 1
-					carry = tmp_count - random_length
+					carry = tmp_count - random_length_count
 				
 				timed_chords.append(timed_chord)
 
 	return timed_chords
 
-func count_notes(notes):
-	# TODO
-	pass
 
-#func generate(notes, tempo) -> void:
-	#if not CsoundState._main_ready:
-		#await get_tree().create_timer(1.0).timeout
-		#generate(notes, tempo)
-		#return
-	#csound = CsoundServer.get_csound("Main")
-	#csound.compile_csd(FileAccess.get_file_as_string(csd))
-	##var scale_notes = [261, 277, 293, 311, 329, 349, 369, 392, 415, 440]
-	##for i in range(10):
-		### an arg is wrong but you get the idea
-		### first arg is seconds from the current time.
-		##var event = 'i "piano" %d 1 %d 0.09 %d' % [i, i, scale_notes[i]]
-		##csound.event_string(event)
-#
-	##await get_tree().create_timer(10.0).timeout
-#
-	#var note_frequencies = {
-		#"C": 261.63,
-		#"C#": 277.18,
-		#"D": 293.66,
-		#"D#": 311.13,
-		#"Eb": 311.13,
-		#"E": 329.63,
-		#"F": 349.23,
-		#"F#": 369.99,
-		#"G": 392.00,
-		#"G#": 415.30,
-		#"A": 440.00,
-		#"Bb": 466.16,
-		#"B": 493.88
-	#}
-	#
-	#var chords = {
-		#"C": ["C", "E", "G"],
-		#"D": ["D", "F#", "A"],
-		#"E": ["E", "G#", "B"],
-		#"F": ["F", "A", "C"],
-		#"G": ["G", "B", "D"],
-		#"A": ["A", "C#", "E"],
-		#"B": ["B", "D#", "F#"]
-	#}
-	#
-	#var current_time = 0.0
-	#var piece_length = 60.0  # Length of the piece in seconds
-	#var beat_duration = 60.0 / tempo  # Duration of one beat in seconds
-	#
-	#while current_time < piece_length:
-		#for note in notes:
-			#var note_name = note["name"]
-			#var length_sec = note["length_sec"]
-			#var frequency = note_frequencies[note_name]
-			#
-			## Generate the main note event
-			##i101100  1   0.2 349/2 0.01 0.75 100 100
-			#var event = 'i "synth" %f %f %f %f %f %f %f %f' % [current_time, length_sec, 0.2, frequency, 0.01, 0.75, 100, 100]
-			#csound.event_string(event)
-			#
-			## Generate the chord events
-			#if note_name in chords:
-				#for chord_note in chords[note_name]:
-					#var chord_frequency = note_frequencies[chord_note]
-					#var chord_event = 'i "synth" %f %f %f %f %f %f %f %f' % [current_time, length_sec, 0.2, chord_frequency, 0.01, 0.75, 100, 100]
-					#csound.event_string(chord_event)
-			#
-			#current_time += length_sec
-	#
-	#await get_tree().create_timer(piece_length).timeout
+func assign_counts(notes):
+	var curr = 1.0
+	for n in notes:
+		n["start_count"] = curr
+		n["octave"] = 4
+		curr += note_lengths.find_key(n["length"])
+		print("curr", curr)
+	notes.sort_custom(sort)
+	return notes
+
+
+func get_notes_array_from_chords(chords):
+	var notes = []
+	for c in chords:
+		for t in c["triad"]:
+			notes += [{
+				"name": t,
+				"length": c["length"],
+				"octave": 3,
+				"start_count": c["start_count"]
+			}]
+	return notes
+
+
+func combine_and_sort_notes(note_arrays):
+	var total = []
+	for array in note_arrays:
+		total += array
+	
+	total.sort_custom(sort)
+	return total
+
+static func sort(a, b):
+	if a["start_count"] < b["start_count"]:
+		return true
+	return false

@@ -1,7 +1,7 @@
 <CsoundSynthesizer>
 <CsOptions>
 ; Select audio/midi flags here according to platform
--odac     ;;;realtime audio out
+-odac     -t120 ;;;realtime audio out
 ;-iadc    ;;;uncomment -iadc if real audio input is needed too
 ; For Non-realtime ouput leave only the line below:
 ; -o prepiano.wav -W ;;; for file output any platform
@@ -34,6 +34,10 @@ afilt	tone	aosc, kcut
 aout    =  	    afilt*kenv
 		outs  	aout, aout
 		dispfft	afilt, idur, 4096
+endin
+
+    instr tempo
+tempo p3, 120
 endin
 
 </CsInstruments>
