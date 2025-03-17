@@ -25,10 +25,12 @@ func _process(_delta):
 	if notes.size() <= 3:
 		return
 
+	print(note_start_times)
 	if note_start_times.is_empty():
 		if not generator_triggered and (curr_time - latest_release) > 1000:
 			Generator.generate(notes, tempo)
 			generator_triggered = true
+			get_parent()._on_generate()
 
 
 func key_pressed(note):
@@ -98,21 +100,24 @@ func update_durations_and_tempo():
 	var interval_sum = 0.0
 	var categorized_notes = []
 	
-	for i in range(1, notes.size()):
+	for i in range(1, notes.size()+1):
 		var start_sec = notes[i-1].start_sec
-		var next_start_time = notes[i].release_sec
+		var next_start_time = notes[i-1].release_sec
+		if notes.size() > i:
+			next_start_time = notes[i].release_sec
 		var interval = next_start_time - start_sec
 		
 		interval_sum += interval
 		intervals.append(interval)
 		
 		var note_length = categorize_note_length(interval, tempo)  # Assume 120 BPM for now
-		notes[i-1]["note_length"] = note_length
+		notes[i-1]["length"] = note_length
 		# TODO trigger signal if note is updated
-		categorized_notes.append(note_length)
+		categorized_notes.push_back(notes[i-1])
 	
 	var avg_interval = 0.0
 	if intervals.size() > 0:
 		avg_interval = interval_sum / intervals.size()
 	
 	tempo = 60 / avg_interval
+	notes = categorized_notes

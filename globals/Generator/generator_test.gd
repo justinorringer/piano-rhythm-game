@@ -44,5 +44,5 @@ func _ready():
 	var with_counts = Generator.assign_counts(ode_to_test_notes)
 	print("With counts", with_counts)
 	print("Relations chosen", relations)
-	notes = Generator.generate(ode_to_test_notes, tempo)
+	Generator.generate(ode_to_test_notes, tempo)
 	generated_test.emit()
