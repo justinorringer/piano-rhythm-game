@@ -53,9 +53,8 @@ func generate(lick, tempo):
 	var timed_chords = time_chords_with_notes(chords, counted_melody)
 	var chord_notes = get_notes_array_from_chords(timed_chords)
 	
-	print("generator")
 	# combine melody and chords and sort by time
-	GameState.store(combine_and_sort_notes([counted_melody, chord_notes]), tempo)
+	GameState.store(combine_and_sort_notes([counted_melody, chord_notes]), tempo*2)
 
 
 var circle_of_fifths = [
@@ -70,6 +69,7 @@ var notes_by_step = [
 ]
 # Chord types (Major, Minor, etc.)
 var chord_relations = {
+	"simple": [0, 4],
 	"major": [0, 4, 7],  # Root, Major third, Perfect fifth
 	#"minor": [0, 3, 7],   # Root, Minor third, Perfect fifth
 	#"diminished": [0, 3, 6],  # Diminished: Root, Minor third, Diminished fifth
