@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://8rk2lmm2nkr1"]
+[gd_scene load_steps=3 format=3 uid="uid://8rk2lmm2nkr1"]
 
 [ext_resource type="Script" uid="uid://dcpwj4w6d1k32" path="res://screens/score.gd" id="1_by8ck"]
+[ext_resource type="PackedScene" uid="uid://cascxr2rt4ikn" path="res://globals/Player/state_test.tscn" id="2_d5a6i"]
 
 [node name="Score" type="Node2D"]
 script = ExtResource("1_by8ck")
@@ -16,5 +17,8 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Go to beginning"
+
+[node name="StateTest" parent="." instance=ExtResource("2_d5a6i")]
+position = Vector2(10, 52)
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
