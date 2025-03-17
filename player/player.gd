@@ -52,10 +52,6 @@ func play(notes, tempo) -> void:
 		
 		# Generate the main note event
 		#i101100  1   0.2 349/2 0.01 0.75 100 100
-		if not "octave" in note:
-			print("start_sec", start_sec)
-		print("length", length_sec)
-		print("freq", frequency)
 		var event = 'i "synth" %f %f %f %f %f %f %f %f' % [start_sec, length_sec, 0.2, frequency, 0.01, 0.75, 100, 100]
 		csound.event_string(event)
 

@@ -40,6 +40,9 @@ func _ready():
 	var prog = Generator.generate_chord_progression(ode_to_test_notes)
 	print("Generated progression", prog)
 	var relations = Generator.pick_chord_relation(prog)
+	
+	var with_counts = Generator.assign_counts(ode_to_test_notes)
+	print("With counts", with_counts)
 	print("Relations chosen", relations)
 	notes = Generator.generate(ode_to_test_notes, tempo)
 	generated_test.emit()

@@ -1,6 +1,7 @@
 extends Node2D
 const MAX_SONG_LENGTH = 30 # short and sweet?
 const MAX_CHORDS := 5
+const NUMBER_OF_PHRASES := 5
 
 var csound: CsoundGodot
 
@@ -28,7 +29,7 @@ func generate(lick, tempo):
 
 	# generate phrases similar to the lick provided
 	var phrases = [licky, licky]
-	for i in range(7):  # Generate 4 phrases
+	for i in range(NUMBER_OF_PHRASES):
 		var phrase = []
 		for j in range(lick.size() + 1):
 			var random_note = note_pool[randi() % note_pool.size()]
@@ -153,12 +154,16 @@ func limit_notes_to_max_song_length(notes, tempo):
 	for note in notes:
 		var note_length = note["length"]
 		var note_duration = note_lengths.get(note_length, 1.0) * beat_duration
+		note["start_count"] = total_duration
+		note["octave"] = 4
 
 		if total_duration + note_duration > MAX_SONG_LENGTH:
 			break
 
 		limited_notes.append(note)
 		total_duration += note_duration
+		
+	limited_notes.sort_custom(sort)
 
 	return limited_notes
 
@@ -168,7 +173,6 @@ func time_chords_with_notes(chords: Array, notes: Array):
 	# chords formatted like [{ "chord": "F", "relation": "minor", "triad": ["F", "G#", "C"] }
 	# notes like [{"name": "A", "length": "quarter"}]
 	var timed_chords = []
-	var chord_count = chords.size()
 	#var length_options = [8.0, 6.0, 4.0, 3.0, 2.0]
 	var length_options = ["tied whole", "dotted whole", "whole", "dotted half", "half"]
 	var note_loop_index = 0
@@ -183,7 +187,6 @@ func time_chords_with_notes(chords: Array, notes: Array):
 				break
 			var note = notes[note_loop_index]
 			var note_name = note["name"]
-			var note_length = note["length"]
 
 			# Check if any note in the triad is a half step away
 			# from the note being played. could be fine, but safer
@@ -220,14 +223,15 @@ func time_chords_with_notes(chords: Array, notes: Array):
 
 
 func assign_counts(notes):
-	var curr = 1.0
+	var with_counts = []
+	var curr = 0.0
 	for n in notes:
-		n["start_count"] = curr
-		n["octave"] = 4
-		curr += note_lengths.find_key(n["length"])
-		print("curr", curr)
-	notes.sort_custom(sort)
-	return notes
+		var copy = n.duplicate()
+		copy["start_count"] = curr
+		copy["octave"] = 4
+		curr += note_lengths.find_key(copy["length"])
+		with_counts.append(copy)
+	return with_counts
 
 
 func get_notes_array_from_chords(chords):
