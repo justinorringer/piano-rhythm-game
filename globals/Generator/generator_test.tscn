@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clu34xlkqkxjo"]
+
+[ext_resource type="Script" uid="uid://cwbabysqkagru" path="res://globals/Generator/generator_test.gd" id="1_gafjx"]
+
+[node name="GeneratorTest" type="Node2D"]
+script = ExtResource("1_gafjx")

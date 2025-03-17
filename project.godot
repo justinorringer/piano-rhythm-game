@@ -24,6 +24,10 @@ csound/hide_csound_logs=false
 
 SceneSwitch="*res://globals/SceneSwitch.gd"
 CsoundState="*res://globals/CsoundState.gd"
+Player="*res://globals/Player/Player.tscn"
+Generator="*res://globals/Generator/Generator.tscn"
+GameState="*res://globals/GameState.gd"
+RNG="*res://globals/RNG.gd"
 
 [editor_plugins]
 
