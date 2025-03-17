@@ -21,6 +21,8 @@ func play(notes, tempo) -> void:
 		return
 	csound = CsoundServer.get_csound("Main")
 	csound.compile_csd(FileAccess.get_file_as_string(csd))
+	
+	csound.event_string('i "tempo" %f' % [tempo])
 
 	var note_frequencies = {
 		"C": 261.63,

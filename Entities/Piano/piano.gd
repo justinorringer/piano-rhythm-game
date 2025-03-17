@@ -81,8 +81,8 @@ func key_released(note):
 
 
 var note_lengths = {
-	8.0: "tied whole",
-	6.0: "dotted whole",
+	#8.0: "tied whole",
+	#6.0: "dotted whole",
 	4.0: "whole",
 	3.0: "dotted half",
 	2.0: "half",
@@ -96,8 +96,8 @@ func categorize_note_length(interval: float, bpm: float) -> String:
 
 	var interval_in_beats = interval / beat_duration
 	var error = 0.3
-	if abs(interval_in_beats - 8.0) > error:
-		return note_lengths[8.0]
+	if abs(interval_in_beats - 4.0) > error:
+		return note_lengths[4.0]
 	for key in note_lengths:
 		if abs(interval_in_beats - key) < error:
 			return note_lengths[key]
