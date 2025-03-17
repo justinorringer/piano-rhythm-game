@@ -215,7 +215,6 @@ func time_chords_with_notes(chords: Array, notes: Array):
 					tmp_count += passed_note_length
 					note_loop_index += 1
 				if tmp_count > random_length_count:
-					note_loop_index -= 1
 					carry = tmp_count - random_length_count
 				
 				timed_chords.append(timed_chord)
