@@ -17,18 +17,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07109, 0, 0)
 key_index = 1
 
 [node name="PianoKeyC#" parent="." instance=ExtResource("1_4r2tf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, -0.905895, 0.105371, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, -0.905895, 0.147334, -0.5)
 key_index = 2
-blackKey = true
 
 [node name="PianoKeyD" parent="." instance=ExtResource("1_4r2tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.714784, 0.00413501, 0)
 key_index = 3
 
 [node name="PianoKeyD#" parent="." instance=ExtResource("1_4r2tf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, -0.549589, 0.105371, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, -0.549589, 0.147334, -0.5)
 key_index = 4
-blackKey = true
 
 [node name="PianoKeyE" parent="." instance=ExtResource("1_4r2tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.358478, 0, 0)
@@ -39,27 +37,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00217214, 0, 0)
 key_index = 6
 
 [node name="PianoKeyF#" parent="." instance=ExtResource("1_4r2tf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0.163023, 0.105371, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0.163023, 0.147334, -0.5)
 key_index = 7
-blackKey = true
 
 [node name="PianoKeyG" parent="." instance=ExtResource("1_4r2tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.354134, 0, 0)
 key_index = 8
 
 [node name="PianoKeyG#" parent="." instance=ExtResource("1_4r2tf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0.519329, 0.105371, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0.519329, 0.147334, -0.5)
 key_index = 9
-blackKey = true
 
 [node name="PianoKeyA" parent="." instance=ExtResource("1_4r2tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.710439, 0, 0)
 key_index = 10
 
 [node name="PianoKeyA#" parent="." instance=ExtResource("1_4r2tf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0.875634, 0.105371, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7, 0.875634, 0.147334, -0.5)
 key_index = 11
-blackKey = true
 
 [node name="PianoKeyB" parent="." instance=ExtResource("1_4r2tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0655, 0, 0)
