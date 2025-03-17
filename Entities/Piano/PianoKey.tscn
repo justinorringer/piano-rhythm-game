@@ -1,6 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://wn23bm18m24k"]
+[gd_scene load_steps=10 format=3 uid="uid://wn23bm18m24k"]
 
 [ext_resource type="Script" uid="uid://6lvh88e8l6g" path="res://Entities/Piano/piano_key.gd" id="1_f76f1"]
+[ext_resource type="Shader" uid="uid://dtmqc62qmqxk1" path="res://Entities/Piano/PianoKey.gdshader" id="2_kelwr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4mm1"]
+render_priority = 0
+shader = ExtResource("2_kelwr")
+shader_parameter/grow_amount = 0.05
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/depth_offset = 0.0001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f76f1"]
+next_pass = SubResource("ShaderMaterial_r4mm1")
 
 [sub_resource type="BoxMesh" id="BoxMesh_y6vwa"]
 
@@ -63,6 +74,7 @@ script = ExtResource("1_f76f1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.1, 0, 0, 0, 1.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_f76f1")
 mesh = SubResource("BoxMesh_y6vwa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

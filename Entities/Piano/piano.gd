@@ -38,7 +38,16 @@ func key_pressed(note):
 	if not first_note_time:
 		first_note_time = curr
 	note_start_times[note] = curr
+	light_note(note, true)  # testing
 
+func light_note(note_number, is_lit: bool):
+	for c in get_children():
+		if is_instance_of(c, PianoKey) and c.key_index == note_number:
+			if is_lit:
+				c.light_note(true)
+			else:
+				c.light_note(false)
+			return
 
 var note_names = {
 	1: "C",
@@ -68,6 +77,7 @@ func key_released(note):
 	note_start_times.erase(note)
 	update_durations_and_tempo()
 	handle_notes.emit(note_dict)
+	light_note(note, false) # testing
 
 
 var note_lengths = {
