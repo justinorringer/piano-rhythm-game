@@ -33,6 +33,12 @@ RNG="*res://globals/RNG.gd"
 
 enabled=PackedStringArray("res://addons/csound/plugin.cfg")
 
+[layer_names]
+
+2d_physics/layer_1="Line"
+2d_physics/layer_2="Note"
+2d_physics/layer_3="NoteStream"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

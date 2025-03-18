@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://co47tnjjnulr4"]
+
+[ext_resource type="Script" uid="uid://bbke7s7j2qk57" path="res://components/staff/staff.gd" id="1_35vpo"]
+[ext_resource type="Texture2D" uid="uid://b3woha2we65fr" path="res://components/staff/staff.png" id="1_eynf1"]
+[ext_resource type="PackedScene" uid="uid://cv3xwrd1drxww" path="res://components/staff/line_path.tscn" id="3_m0383"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_eynf1"]
+a = Vector2(-2, -192)
+b = Vector2(-3, 190)
+
+[node name="Staff" type="Node2D"]
+script = ExtResource("1_35vpo")
+
+[node name="Cleff" type="Sprite2D" parent="."]
+position = Vector2(348, 12)
+scale = Vector2(1.36, 1.36)
+texture = ExtResource("1_eynf1")
+
+[node name="PlayLine" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayLine"]
+position = Vector2(-1, -4)
+shape = SubResource("SegmentShape2D_eynf1")
+
+[node name="Line2D" type="Line2D" parent="PlayLine"]
+points = PackedVector2Array(-2, -192, -3, 190)
+closed = true
+default_color = Color(0, 0, 0, 1)
+
+[node name="LinePaths" type="Node2D" parent="."]
+
+[node name="F" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 230)
+
+[node name="F#" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 230)
+
+[node name="G" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 194)
+
+[node name="G#" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 194)
+
+[node name="A" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 160)
+
+[node name="Bb" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 130)
+
+[node name="B" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 130)
+
+[node name="C" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 98)
+
+[node name="C#" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 98)
+
+[node name="D" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 67)
+
+[node name="Eb" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 36)
+
+[node name="E" parent="LinePaths" instance=ExtResource("3_m0383")]
+position = Vector2(-2, 36)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(330, 45)
+scale = Vector2(5.88, 5.88)
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="area_entered" from="PlayLine" to="." method="_on_play_line_area_entered"]
+[connection signal="area_exited" from="PlayLine" to="." method="_on_play_line_area_exited"]

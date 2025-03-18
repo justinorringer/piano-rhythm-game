@@ -7,8 +7,11 @@ var tempo = 120
 var note_start_times = {} # queue to record when a note (say C) was last pressed
 var latest_release = 0
 var generator_triggered = false
+@export_flags("lick", "game") var mode = 0
 
-signal handle_notes()
+signal piano_key_pressed(key)
+signal piano_key_released(key)
+signal handle_notes(note)
 
 func _ready():
 	# get all the children and subscribe to the key_pressed signal
@@ -20,6 +23,8 @@ func _ready():
 
 
 func _process(_delta):
+	if mode == 2:
+		return
 	# should the game start?
 	var curr_time = Time.get_ticks_msec()
 	if notes.size() <= 3:
@@ -39,6 +44,8 @@ func key_pressed(note):
 		first_note_time = curr
 	note_start_times[note] = curr
 	light_note(note, true)  # testing
+	GameState.append_keys_active(note)
+	piano_key_pressed.emit(note)
 
 func light_note(note_number, is_lit: bool):
 	for c in get_children():
@@ -77,6 +84,8 @@ func key_released(note):
 	note_start_times.erase(note)
 	update_durations_and_tempo()
 	handle_notes.emit(note_dict)
+	GameState.remove_keys_active(note)
+	piano_key_released.emit(note)
 	light_note(note, false) # testing
 
 

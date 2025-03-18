@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://sqtu6oiueis7"]
+
+[ext_resource type="Script" uid="uid://dx5nxsaue4h45" path="res://components/staff/note_timer.gd" id="1_f3sx3"]
+
+[node name="NoteTimer" type="Node2D"]
+script = ExtResource("1_f3sx3")

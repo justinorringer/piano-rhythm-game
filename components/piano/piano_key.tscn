@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://wn23bm18m24k"]
 
-[ext_resource type="Script" uid="uid://6lvh88e8l6g" path="res://Entities/Piano/piano_key.gd" id="1_f76f1"]
-[ext_resource type="Shader" uid="uid://dtmqc62qmqxk1" path="res://Entities/Piano/PianoKey.gdshader" id="2_kelwr"]
+[ext_resource type="Script" uid="uid://6lvh88e8l6g" path="res://components/piano/piano_key.gd" id="1_f76f1"]
+[ext_resource type="Shader" uid="uid://dtmqc62qmqxk1" path="res://components/piano/piano_key.gdshader" id="2_kelwr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r4mm1"]
 render_priority = 0

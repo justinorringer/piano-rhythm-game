@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv3xwrd1drxww"]
+
+[ext_resource type="Script" uid="uid://bit1to1v6psug" path="res://components/staff/line_path.gd" id="1_p61iu"]
+[ext_resource type="PackedScene" uid="uid://c06kxqqmfiohq" path="res://components/staff/note.tscn" id="2_nug5a"]
+
+[sub_resource type="Curve2D" id="Curve2D_vyfue"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 983, -130, 0, 0, 0, 0, -80, -130, 0, 0, 0, 0, 983, -132)
+}
+point_count = 3
+
+[node name="LinePath" type="Node2D"]
+script = ExtResource("1_p61iu")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(981, -132)
+rotation = 3.14159
+
+[node name="LinePath2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_vyfue")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="LinePath2D"]
+position = Vector2(983, -130)
+rotation = 3.14159
+rotates = false
+loop = false
+
+[node name="Note" parent="LinePath2D/PathFollow2D" instance=ExtResource("2_nug5a")]
+
+[node name="Note2" parent="LinePath2D/PathFollow2D" instance=ExtResource("2_nug5a")]
+position = Vector2(131, 0.000320435)

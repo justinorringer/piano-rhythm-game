@@ -1,8 +1,8 @@
 extends Control
 
 func _process(delta) -> void:
-	$scoreCounter.text = str(GameState.score)
-	$comboCounter.text = "x" + str(GameState.current_combo)
+	$Control/scoreCounter.text = str(GameState.score)
+	$Control/comboCounter.text = "x" + str(GameState.current_combo)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:

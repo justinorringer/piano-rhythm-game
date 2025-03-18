@@ -1,18 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1dlk84s8r86j"]
+[gd_scene load_steps=7 format=3 uid="uid://b1dlk84s8r86j"]
 
 [ext_resource type="Script" uid="uid://d1agrnifgtn8q" path="res://screens/game.gd" id="1_3ciuf"]
 [ext_resource type="PackedScene" uid="uid://co47tnjjnulr4" path="res://components/staff/staff.tscn" id="2_3ciuf"]
 [ext_resource type="Script" uid="uid://bfijesy1vvxi3" path="res://globals/GameState.gd" id="2_5kag3"]
-[ext_resource type="Script" uid="uid://byowc0bnpltrm" path="res://components/recall_melody.gd" id="2_gfkhe"]
 [ext_resource type="PackedScene" uid="uid://biotrs1ykuhgv" path="res://components/piano/piano.tscn" id="3_6nlyh"]
 [ext_resource type="PackedScene" uid="uid://bdhxm5a3ipftv" path="res://components/score_ui.tscn" id="4_5kag3"]
 [ext_resource type="PackedScene" uid="uid://cy775sw87lmpp" path="res://components/camera.tscn" id="4_rypym"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_3ciuf")
-
-[node name="RecallMelody" type="Node" parent="."]
-script = ExtResource("2_gfkhe")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_5kag3")

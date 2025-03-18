@@ -2,7 +2,7 @@ extends Node2D
 
 
 func _on_start_pressed() -> void:
-	SceneSwitch.switch_scene("res://screens/piano_time.tscn")
+	SceneSwitch.switch_scene("res://screens/lick.tscn")
 
 
 func _on_settings_pressed() -> void:

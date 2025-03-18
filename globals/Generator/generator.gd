@@ -46,7 +46,8 @@ func generate(lick, tempo):
 	for phrase in phrases:
 		new_melody += phrase + RNG.pick_random(to_rest_or_not)
 
-	new_melody = limit_notes_to_max_song_length(new_melody, tempo) + lick
+	var measure_rest = [{"name": "R", "length": "whole"}]
+	new_melody = measure_rest + limit_notes_to_max_song_length(new_melody, tempo) + lick
 	var counted_melody = assign_counts(new_melody)
 	counted_melody.sort_custom(sort)
 	# TODO apply inversions by choosing octaves for chord notes.
