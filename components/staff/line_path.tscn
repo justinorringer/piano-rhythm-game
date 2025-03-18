@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv3xwrd1drxww"]
+
+[ext_resource type="Script" uid="uid://bit1to1v6psug" path="res://components/staff/line_path.gd" id="1_p61iu"]
+
+[sub_resource type="Curve2D" id="Curve2D_vyfue"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 985, -132, 0, 0, 0, 0, -76, -134)
+}
+point_count = 2
+
+[node name="LinePath" type="Node2D"]
+script = ExtResource("1_p61iu")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(985, -132)
+rotation = 3.14159
+
+[node name="LinePath2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_vyfue")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="LinePath2D"]
+position = Vector2(985, -132)
+rotates = false
+loop = false
+
+[node name="TempHome" type="Node2D" parent="."]

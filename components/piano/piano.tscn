@@ -1,13 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://biotrs1ykuhgv"]
+[gd_scene load_steps=3 format=3 uid="uid://biotrs1ykuhgv"]
 
-[ext_resource type="Script" uid="uid://bj0jughvcfp0m" path="res://Entities/Piano/piano.gd" id="1_4cfhx"]
-[ext_resource type="PackedScene" uid="uid://wn23bm18m24k" path="res://Entities/Piano/PianoKey.tscn" id="1_4r2tf"]
-
-[sub_resource type="Environment" id="Environment_4r2tf"]
-background_mode = 1
-ambient_light_source = 1
-ambient_light_color = Color(0.662651, 0.476852, 0.682136, 1)
-ambient_light_energy = 2.6
+[ext_resource type="Script" uid="uid://bj0jughvcfp0m" path="res://components/piano/piano.gd" id="1_4cfhx"]
+[ext_resource type="PackedScene" uid="uid://wn23bm18m24k" path="res://components/piano/piano_key.tscn" id="1_4r2tf"]
 
 [node name="Piano" type="Node3D"]
 script = ExtResource("1_4cfhx")
@@ -59,10 +53,3 @@ key_index = 11
 [node name="PianoKeyB" parent="." instance=ExtResource("1_4r2tf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0655, 0, 0)
 key_index = 12
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.35708, 0.934074, 0, -0.934074, 0.35708, -0.0863464, 1.1741, 0.51518)
-environment = SubResource("Environment_4r2tf")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.121545, -0.431679, 0.893801, -0.266017, 0.853369, 0.448326, -0.956275, -0.292258, -0.0111115, 0, 0, 0)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy775sw87lmpp"]
+
+[sub_resource type="Environment" id="Environment_kstxr"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.662651, 0.476852, 0.682136, 1)
+ambient_light_energy = 2.6
+
+[node name="Camera" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.35708, 0.934074, 0, -0.934074, 0.35708, -0.0863464, 2.05359, 0.308263)
+environment = SubResource("Environment_kstxr")
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.121545, -0.431679, 0.893801, -0.266017, 0.853369, 0.448326, -0.956275, -0.292258, -0.0111112, 0.551748, 0.542264, 0)

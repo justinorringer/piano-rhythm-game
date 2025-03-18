@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c06kxqqmfiohq"]
+
+[ext_resource type="Script" uid="uid://c7hiix2prh16u" path="res://components/staff/note.gd" id="1_fujoi"]
+[ext_resource type="Texture2D" uid="uid://dikvitrq37486" path="res://components/staff/note.png" id="1_tqgq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqgq0"]
+size = Vector2(102.5, 26)
+
+[node name="Note" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_fujoi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.05176e-05, -3.05176e-05)
+scale = Vector2(0.199999, 0.199999)
+texture = ExtResource("1_tqgq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(38.75, 0)
+shape = SubResource("RectangleShape2D_tqgq0")

@@ -46,15 +46,16 @@ func generate(lick, tempo):
 	for phrase in phrases:
 		new_melody += phrase + RNG.pick_random(to_rest_or_not)
 
-	new_melody = limit_notes_to_max_song_length(new_melody, tempo) + lick
+	var measure_rest = [{"name": "R", "length": "whole"}]
+	new_melody = measure_rest + limit_notes_to_max_song_length(new_melody, tempo) + lick
 	var counted_melody = assign_counts(new_melody)
-
+	counted_melody.sort_custom(sort)
 	# TODO apply inversions by choosing octaves for chord notes.
 	var timed_chords = time_chords_with_notes(chords, counted_melody)
 	var chord_notes = get_notes_array_from_chords(timed_chords)
 	
 	# combine melody and chords and sort by time
-	GameState.store(combine_and_sort_notes([counted_melody, chord_notes]), tempo*2)
+	GameState.store(counted_melody, combine_and_sort_notes([counted_melody, chord_notes]), tempo*2)
 
 
 var circle_of_fifths = [
@@ -156,7 +157,7 @@ func limit_notes_to_max_song_length(notes, tempo):
 		var note_length = note["length"]
 		var note_duration = note_lengths.get(note_length, 1.0) * beat_duration
 		note["start_count"] = total_duration
-		note["octave"] = 4
+		note["octave"] = 5
 
 		if total_duration + note_duration > MAX_SONG_LENGTH:
 			break

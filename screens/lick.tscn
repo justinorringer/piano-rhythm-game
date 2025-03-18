@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxjef3uhon8xr"]
+
+[ext_resource type="Script" uid="uid://omnx88lorl6x" path="res://screens/lick.gd" id="1_jqve2"]
+[ext_resource type="PackedScene" uid="uid://biotrs1ykuhgv" path="res://components/piano/piano.tscn" id="2_08csa"]
+[ext_resource type="PackedScene" uid="uid://co47tnjjnulr4" path="res://components/staff/staff.tscn" id="3_0xmqd"]
+[ext_resource type="Script" uid="uid://bfijesy1vvxi3" path="res://globals/GameState.gd" id="4_0xmqd"]
+[ext_resource type="PackedScene" uid="uid://cy775sw87lmpp" path="res://components/camera.tscn" id="4_08csa"]
+
+[node name="PianoTime" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_jqve2")
+
+[node name="Piano" parent="." instance=ExtResource("2_08csa")]
+mode = 1
+
+[node name="Camera" parent="." instance=ExtResource("4_08csa")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_0xmqd")
+
+[node name="Staff" parent="CanvasLayer" instance=ExtResource("3_0xmqd")]
+position = Vector2(456, 123)
+scale = Vector2(0.4, 0.4)
+mode = 1
