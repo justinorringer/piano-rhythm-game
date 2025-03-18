@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://cascxr2rt4ikn"]
+
+[ext_resource type="Script" uid="uid://clu65jqaw0sh0" path="res://globals/Player/scoreCounter.gd" id="1_q6tno"]
+
+[node name="StateTest" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 92.0
+offset_bottom = 47.0
+script = ExtResource("1_q6tno")
+
+[node name="ScoreLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 70.0
+offset_bottom = 28.0
+text = "SCORE:"
+
+[node name="scoreCounter" type="RichTextLabel" parent="Control"]
+offset_left = 66.0
+offset_top = -2.0
+offset_right = 134.0
+offset_bottom = 27.0
+text = "0"
+
+[node name="comboCounter" type="RichTextLabel" parent="Control"]
+offset_left = 64.0
+offset_top = 19.0
+offset_right = 132.0
+offset_bottom = 48.0
+text = "x0"
